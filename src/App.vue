@@ -2,7 +2,8 @@
   <h1>Blinky</h1>
   <p>Let's Test Your Reflexes</p>
   <button @click="start" :disabled="isPlaying">Play</button>
-  <Block v-if="isPlaying" :delay="delay"/>
+  <p>Reaction Time: {{ score }}ms</p>
+  <Block v-if="isPlaying" :delay="delay" @endgame="endGame"/>
 </template>
 
 <script>
@@ -13,7 +14,8 @@ export default {
   data(){
     return {
       isPlaying: false,
-      delay: null
+      delay: null,
+      score: null
     }
   },
   methods: {
@@ -21,6 +23,10 @@ export default {
       this.delay = 2000 + Math.random()*5000
       this.isPlaying = true
       // console.log(this.delay);
+    },
+    endGame(reactionTime){
+      this.score = reactionTime
+      this.isPlaying = false
     }
   }
 }
