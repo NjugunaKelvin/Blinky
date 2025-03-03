@@ -7,7 +7,16 @@
   <script>
   export default {
       props: ['delay'],
+      data(){
+        return {
+            showBlock: false
+        }
+      },
+      mounted(){
+        console.log('Component Mounted')        
+      }
   }
+     
   </script>
   
   <style>
